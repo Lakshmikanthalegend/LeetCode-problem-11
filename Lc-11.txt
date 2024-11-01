@@ -1,0 +1,28 @@
+class Solution {
+    public int maxArea(int[] height) {
+        int length = height.length; // Initialize length properly
+        int left = 0;               // Left pointer
+        int right = length - 1;     // Right pointer
+        int maxArea = 0;            // Variable to store the maximum area
+
+        // Use the two-pointer approach
+        while (left < right) {
+            // Calculate the height and width for the current container
+            int minHeight = Math.min(height[left], height[right]);
+            int width = right - left;
+            int area = minHeight * width;
+
+            // Update maxArea if the current area is larger
+            maxArea = Math.max(maxArea, area);
+
+            // Move the pointer that has the shorter height
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;
+    }
+}
